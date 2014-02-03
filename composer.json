@@ -1,0 +1,25 @@
+{
+    "name": "guilhermeguitte/laravel-slow-test",
+    "description": "Warn tests that are slow to running",
+    "keywords": ["laravel","illuminate","test","slow", "runtime"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guilherme Guitte",
+            "email": "guilherme.guitte@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "*",
+    },
+    "autoload": {
+        "classmap": [
+            "src/commands"
+        ],
+        "psr-0": {
+            "GuilhermeGuitte\\LaravelSlowTest": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
