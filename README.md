@@ -22,7 +22,7 @@ Add in your `phpunit.xml`
     <phpunit>
      ...
         <listeners>
-        <listener class="RunTimeListener" file="app/tests/RunTimeListener.php"/>
+        <listener class="GuilhermeGuitte\LaravelSlowTest\RunTimeListener" file="vendor/guilhermeguitte/laravel-slow-test/src/GuilhermeGuitte/LaravelSlowTest/RunTimeListener.php"/>
         </listeners>
     </phpunit>
 
