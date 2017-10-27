@@ -1,22 +1,29 @@
-<?php namespace GuilhermeGuitte\LaravelSlowTest;
-use Config;
+<?php
 
-class RunTimeListener implements \PHPUnit_Framework_TestListener
+namespace GuilhermeGuitte\LaravelSlowTest;
+
+use PHPUnit\Framework\Test;
+use PHPUnit\Framework\BaseTestListener;
+use PHPUnit\Framework\ExpectationFailedException;
+
+class RunTimeListener extends BaseTestListener
 {
-    use MethodTrait;
-
-    function __construct() { }
-
-    public function endTest(\PHPUnit_Framework_Test $test, $time)
+    /**
+     * A test ended.
+     *
+     * @param Test  $test
+     * @param float $time
+     * @return void
+     *
+     * @throws ExpectationFailedException
+     */
+    public function endTest(Test $test, $time)
     {
-        $execution = Config::get('test.max_execution_time', 100);
+        $execution = 1;
 
-        if ( $time >= $execution ) {
-            $message = 'This test exceeded the run time specified. Execution time: ' .
-                $time . ' ms';
-
-            throw new \PHPUnit_Framework_ExpectationFailedException(
-                $message
+        if ($time >= $execution) {
+            throw new ExpectationFailedException(
+                'The test "'. $test->getName() .'" exceeded the runtime specified. Execution time: ' . number_format($time, 2) . 's'
             );
         }
     }

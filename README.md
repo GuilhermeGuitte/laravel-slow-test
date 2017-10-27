@@ -4,50 +4,53 @@ _Showing tests that are very slow to running._
 
 ![Example:][1]
 
-#Quick start
+# Quick start
 
 ## Setup
 
 In the `require` key of your `composer.json` add the following line:
-
-    "guilhermeguitte/laravel-slow-test": "dev-master"
+```json
+"guilhermeguitte/laravel-slow-test": "dev-master"
+```
 
 Run the Composer update command:
-
-    $ composer update
-
+```
+composer update
+```
 
 Add in your `phpunit.xml`
-
-    <phpunit>
-     ...
-        <listeners>
-        <listener class="GuilhermeGuitte\LaravelSlowTest\RunTimeListener" file="vendor/guilhermeguitte/laravel-slow-test/src/GuilhermeGuitte/LaravelSlowTest/RunTimeListener.php"/>
-        </listeners>
-    </phpunit>
+```xml
+<phpunit>
+    ...
+    <listeners>
+        <listener class="GuilhermeGuitte\LaravelSlowTest\RunTimeListener" />
+    </listeners>
+</phpunit>
+```
 
 ## Configuration
 
-You can specify the maximum execution by tests (default value is `100 ms`), creating `test.php` at `app/config` folder:
+You can specify the maximum execution by tests (default value is `1s`), creating `test.php` at `app/config` folder:
+```php
+<?php
 
-    <? php 
-        return array(
-            'max_execution_time' => 50 // ms
-        );
-    
+return [
+    'max_execution_time' => 1 // s
+];
+```
 
 ## Why be careful with this?
 
-Following principles of Uncle Bob (Robert C. Martin), the Clean Code book, he says that all tests should be FIRST, speaking of ** F ** specifically:
+Following principles of Uncle Bob (Robert C. Martin), the Clean Code book, he says that all tests should be FIRST, speaking of **F** specifically:
 
  - **F** ast: All tests must run fast, slowness is a code smell for dependent tests and design problems. If they are slow you end up not running often doesn't have feeback early about a possible problem in the code.
 
-**Laravel Slow Test** aims to assist in finding slow down. 
+**Laravel Slow Test** aims to assist in finding slow down.
 Initially, a small project you do not notice much difference, few tests, but when the project grows, you see how that makes a big difference.
 
 Stay tuned!
 
-#License
+# License
 
 Laravel-slow-test is free software distributed under the terms of the MIT license
 
